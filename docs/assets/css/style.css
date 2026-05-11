@@ -102,6 +102,10 @@ h2 {
   color: var(--ink);
   margin: 0 auto 12px;
   max-width: 880px;
+  /* Let the browser balance line widths so no name is orphaned on
+     its own line (graceful fallback to default wrapping on browsers
+     that don't yet support text-wrap: balance). */
+  text-wrap: balance;
 }
 .authors a {
   color: var(--link);
@@ -118,6 +122,7 @@ h2 {
   margin: 0 auto 22px;
   max-width: 880px;
   line-height: 1.75;
+  text-wrap: balance;
 }
 .affil sup { color: var(--muted); }
 .affil-note { color: var(--muted); font-size: 13px; }
