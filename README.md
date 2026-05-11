@@ -4,7 +4,7 @@ Companion page to *A Survey of Harness Engineering*. The site introduces the ETC
 seven-layer taxonomy and points to the public catalog of agent-harness projects
 maintained at [Awesome-Agent-Harness](https://github.com/Picrew/awesome-agent-harness).
 
-- **Live page:** *to be published* (GitHub Pages, served from `docs/`)
+- **Live page:** <https://picrew.github.io/LLM-Harness/>
 - **Paper:** *arXiv link forthcoming*
 - **Catalog:** <https://github.com/Picrew/awesome-agent-harness>
 
