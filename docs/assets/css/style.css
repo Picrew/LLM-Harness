@@ -184,6 +184,8 @@ figure figcaption {
   text-align: center;
   margin-top: 14px;
   line-height: 1.65;
+  /* Avoid orphaned single words on the last line when captions wrap. */
+  text-wrap: balance;
 }
 
 /* Sections ------------------------------------------------------------ */
