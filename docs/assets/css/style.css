@@ -1,0 +1,485 @@
+/* =====================================================================
+   Agent Harness Survey — project page styles.
+   Quiet, white-paper aesthetic. Inspired by typical academic project pages.
+   ===================================================================== */
+
+:root {
+  --bg:        #ffffff;
+  --bg-alt:    #f7f7f3;
+  --ink:       #1f2328;
+  --ink-soft:  #404953;
+  --muted:     #6a727b;
+  --line:      #e5e0d2;
+  --line-soft: #edeae0;
+  --link:      #0a59a4;
+  --link-hov:  #08407a;
+  --accent:    #114a6f;
+  --code-bg:   #f6f8fa;
+  --code-ink:  #1f2328;
+
+  --maxw:        1080px;
+  --maxw-narrow: 820px;
+
+  --r:    6px;
+  --t:    160ms ease-out;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.72;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+a { color: var(--link); text-decoration: none; }
+a:hover { color: var(--link-hov); text-decoration: underline; text-underline-offset: 3px; }
+
+em { font-style: italic; }
+sup { font-size: 0.72em; vertical-align: super; line-height: 0; }
+
+img { max-width: 100%; display: block; }
+
+p { margin: 0 0 1em; }
+
+h2 {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  margin: 0 0 0.6em;
+}
+
+/* Containers ----------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.container--narrow {
+  max-width: var(--maxw-narrow);
+}
+
+/* Hero ---------------------------------------------------------------- */
+
+.hero {
+  padding: 64px 0 32px;
+  text-align: center;
+  background: var(--bg);
+}
+
+.title {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: clamp(28px, 4.2vw, 40px);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.18;
+  color: var(--ink);
+  margin: 0 0 14px;
+}
+
+.venue {
+  font-size: 14px;
+  color: var(--muted);
+  margin: 0 0 26px;
+  letter-spacing: 0.02em;
+}
+
+.authors {
+  font-size: 16.5px;
+  line-height: 1.75;
+  color: var(--ink);
+  margin: 0 auto 12px;
+  max-width: 880px;
+}
+.authors a {
+  color: var(--link);
+  font-weight: 500;
+}
+.authors sup {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.affil {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin: 0 auto 22px;
+  max-width: 880px;
+  line-height: 1.75;
+}
+.affil sup { color: var(--muted); }
+.affil-note { color: var(--muted); font-size: 13px; }
+
+/* Buttons ------------------------------------------------------------- */
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin: 26px 0 36px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #1f2328;
+  color: #f6f7f8;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: background var(--t), transform var(--t);
+  border: 1px solid #1f2328;
+}
+.btn:hover {
+  background: #2b3138;
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.btn .ic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  line-height: 1;
+}
+.btn .ic svg { display: block; }
+
+/* Teaser image -------------------------------------------------------- */
+
+.teaser {
+  margin: 18px auto 0;
+  max-width: 880px;
+}
+.teaser img {
+  margin: 0 auto;
+  border-radius: 4px;
+  border: 1px solid var(--line-soft);
+}
+.teaser figcaption,
+figure figcaption {
+  font-style: italic;
+  font-size: 14px;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 14px;
+  line-height: 1.65;
+}
+
+/* Sections ------------------------------------------------------------ */
+
+.section {
+  padding: 64px 0;
+  border-top: 1px solid var(--line-soft);
+}
+.section--alt {
+  background: var(--bg-alt);
+}
+
+/* Figures inside sections */
+.section figure {
+  margin: 28px 0;
+}
+.section figure img {
+  margin: 0 auto;
+  border-radius: 4px;
+}
+
+/* Wide figure variant — used by the timeline figure so the chart
+   breaks out of the narrow text column and gets visual prominence. */
+.figure--wide {
+  margin: 18px auto 0;
+  padding: 18px 22px 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 1px 0 rgba(31, 35, 40, 0.03);
+}
+.figure--wide img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+.figure--wide figcaption {
+  margin-top: 14px;
+}
+@media (max-width: 640px) {
+  .figure--wide { padding: 12px 14px 10px; }
+}
+
+/* Portrait-orientation figure (taxonomy tree). Lives in the wider
+   container but is capped so the inner box-text stays readable without
+   the figure dominating the page. */
+.figure--tree {
+  margin: 36px auto 0;
+  padding: 20px 24px 16px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 1px 0 rgba(31, 35, 40, 0.03);
+  max-width: 900px;
+}
+.figure--tree img {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 4px;
+}
+.figure--tree figcaption {
+  margin-top: 14px;
+}
+@media (max-width: 640px) {
+  .figure--tree { padding: 12px 14px 10px; margin-top: 24px; }
+}
+
+/* Phases list --------------------------------------------------------- */
+
+.phases {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: grid;
+  gap: 14px;
+}
+.phases li {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 18px 20px;
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.phases strong { color: var(--ink); }
+.phases__year {
+  display: inline-block;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  margin-right: 12px;
+  padding: 2px 8px;
+  border-radius: 3px;
+  background: var(--bg-alt);
+  vertical-align: 0.08em;
+}
+
+/* Section--alt overrides — make sub-cards remain readable */
+.section--alt .phases li {
+  background: #fff;
+}
+
+/* Layers list --------------------------------------------------------- */
+
+.layers {
+  list-style: none;
+  padding: 0;
+  margin: 22px 0 0;
+  display: grid;
+  gap: 10px;
+}
+.layers li {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 14px;
+  align-items: start;
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--lc, var(--line));
+  border-radius: var(--r);
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+}
+.layers__id {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-weight: 600;
+  font-size: 14px;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--lc) 14%, #fff);
+  color: var(--lc);
+  border: 1px solid color-mix(in srgb, var(--lc) 28%, transparent);
+  margin-top: 1px;
+}
+.layers strong { color: var(--ink); font-weight: 600; }
+
+/* Count table --------------------------------------------------------- */
+
+.counts {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 22px 0 18px;
+  font-size: 15px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.counts th, .counts td {
+  padding: 11px 14px;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--line-soft);
+}
+.counts thead th {
+  background: var(--bg-alt);
+  font-weight: 600;
+  color: var(--ink-soft);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.counts tbody tr:last-child td { border-bottom: 0; }
+.counts .r { text-align: right; font-variant-numeric: tabular-nums; }
+.counts td:first-child {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-weight: 600;
+  color: var(--ink);
+  width: 70px;
+  white-space: nowrap;
+}
+.dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--lc);
+  margin-right: 6px;
+  vertical-align: 0.06em;
+}
+
+.note {
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  margin-top: 12px;
+}
+
+/* Bullets ------------------------------------------------------------- */
+
+.bullets {
+  margin: 12px 0 18px;
+  padding-left: 22px;
+}
+.bullets li {
+  margin-bottom: 10px;
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  line-height: 1.72;
+}
+.bullets strong { color: var(--ink); }
+
+/* Open problems ------------------------------------------------------- */
+
+.problems {
+  margin: 14px 0 0;
+  padding-left: 22px;
+}
+.problems li {
+  margin-bottom: 14px;
+  font-size: 15.5px;
+  color: var(--ink-soft);
+  line-height: 1.72;
+}
+.problems strong { color: var(--ink); }
+.problems::marker { color: var(--muted); }
+.problems li::marker { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* BibTeX -------------------------------------------------------------- */
+
+.bibtex {
+  position: relative;
+  background: var(--code-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+  padding: 16px 18px;
+  margin-top: 18px;
+}
+.bibtex pre {
+  margin: 0;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--code-ink);
+  white-space: pre;
+  overflow-x: auto;
+}
+.bibtex__copy {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  padding: 5px 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink-soft);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background var(--t), color var(--t), border-color var(--t);
+}
+.bibtex__copy:hover {
+  background: #fff;
+  color: var(--ink);
+  border-color: color-mix(in srgb, var(--ink) 30%, var(--line));
+}
+.bibtex__copy.is-copied {
+  background: #1f2328;
+  color: #fff;
+  border-color: #1f2328;
+}
+
+/* Footer -------------------------------------------------------------- */
+
+.footer {
+  padding: 36px 0 56px;
+  border-top: 1px solid var(--line-soft);
+  background: var(--bg);
+}
+.footer p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.7;
+}
+
+/* Responsive tweaks --------------------------------------------------- */
+
+@media (max-width: 640px) {
+  .hero { padding: 40px 0 24px; }
+  .section { padding: 44px 0; }
+  .authors, .affil { font-size: 15px; }
+  .layers li { grid-template-columns: 32px 1fr; gap: 10px; padding: 14px 14px; }
+  .counts th, .counts td { padding: 10px 12px; font-size: 14px; }
+}
+
+/* Print --------------------------------------------------------------- */
+
+@media print {
+  .links, .footer, .bibtex__copy { display: none; }
+  body { color: #000; background: #fff; }
+  .section { border-color: #ddd; padding: 18px 0; }
+}

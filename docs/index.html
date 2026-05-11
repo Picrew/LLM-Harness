@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A Survey of Harness Engineering. Project page for a survey of the agent execution harness, introducing the ETCLOVG seven-layer taxonomy and a public catalog of open-source agent-harness projects.">
+<meta name="keywords" content="LLM agents, agent harness, agent infrastructure, ETCLOVG, agent survey, prompt engineering, context engineering, agent observability, agent governance">
+<title>A Survey of Harness Engineering</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- =================================================================
+     Hero
+     ================================================================= -->
+<section class="hero">
+  <div class="container">
+
+    <h1 class="title">
+      A Survey of Harness Engineering
+    </h1>
+
+    <div class="authors">
+      <a href="#">Junjie&nbsp;Li</a><sup>1,6,&ast;</sup>,
+      <a href="#">Xi&nbsp;Xiao</a><sup>6,&ast;</sup>,
+      <a href="#">Yunbei&nbsp;Zhang</a><sup>5,&ast;</sup>,
+      <a href="#">Chen&nbsp;Liu</a><sup>2,&ast;</sup>,
+      <a href="#">Lin&nbsp;Zhao</a><sup>4</sup>,
+      <a href="#">Xiaoying&nbsp;Liao</a><sup>3</sup>,
+      <a href="#">Yingrui&nbsp;Ji</a><sup>5</sup>,
+      <a href="#">Janet&nbsp;Wang</a><sup>6</sup>,<br>
+      <a href="#">Jianyang&nbsp;Gu</a><sup>7</sup>,
+      <a href="#">Yingqiang&nbsp;Ge</a><sup>9</sup>,
+      <a href="#">Weijie&nbsp;Xu</a><sup>9</sup>,
+      <a href="#">Xi&nbsp;Fang</a><sup>9</sup>,
+      <a href="#">Xiang&nbsp;Xu</a><sup>9</sup>,
+      <a href="#">Tianchen&nbsp;Zhao</a><sup>9</sup>,
+      <a href="#">Youngeun&nbsp;Kim</a><sup>9</sup>,
+      <a href="#">Tianyang&nbsp;Wang</a><sup>6</sup>,<br>
+      <a href="#">Jihun&nbsp;Hamm</a><sup>5</sup>,
+      <a href="#">Smita&nbsp;Krishnaswamy</a><sup>2</sup>,
+      <a href="#">Jun&nbsp;Huan</a><sup>9</sup>,
+      <a href="#">Chandan&nbsp;K&nbsp;Reddy</a><sup>8,9</sup>
+    </div>
+
+    <div class="affil">
+      <sup>1</sup>Carnegie Mellon University &nbsp;&middot;&nbsp;
+      <sup>2</sup>Yale University &nbsp;&middot;&nbsp;
+      <sup>3</sup>Johns Hopkins University &nbsp;&middot;&nbsp;
+      <sup>4</sup>Northeastern University &nbsp;&middot;&nbsp;
+      <sup>5</sup>Tulane University &nbsp;&middot;&nbsp;
+      <sup>6</sup>University of Alabama at Birmingham &nbsp;&middot;&nbsp;
+      <sup>7</sup>The Ohio State University &nbsp;&middot;&nbsp;
+      <sup>8</sup>Virginia Tech &nbsp;&middot;&nbsp;
+      <sup>9</sup>Amazon
+      <br><span class="affil-note"><sup>&ast;</sup>Equal contribution.</span>
+    </div>
+
+    <div class="links">
+      <!-- arXiv link placeholder; replace href when posted. -->
+      <a class="btn" href="#" aria-label="arXiv">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="14" height="14"><path fill="currentColor" d="M3 5h26v22H3V5zm2 2v18h22V7H5zm3 4h4l3 4 3-4h4l-5 6 5 6h-4l-3-4-3 4H8l5-6-5-6z"/></svg>
+        </span><span>arXiv</span>
+      </a>
+      <a class="btn" href="#" aria-label="Paper PDF">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M6 2h9l5 5v13a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm8 1.5V8h4.5L14 3.5zM7.5 13h2c1.1 0 2 .9 2 2s-.9 2-2 2H8.5v2H7.5v-6zm1 1v2h1c.55 0 1-.45 1-1s-.45-1-1-1H8.5zm5 -1h2.2c1.4 0 2.3 1 2.3 2.5s-.9 2.5-2.3 2.5h-2.2v-5zm1 1v3h1.1c.85 0 1.4-.6 1.4-1.5s-.55-1.5-1.4-1.5h-1.1z"/></svg>
+        </span><span>Paper</span>
+      </a>
+      <a class="btn" href="https://github.com/Picrew/awesome-agent-harness">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.52-1.32-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.69 1.25 3.34.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.04 0 0 .97-.31 3.18 1.18a11 11 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.21-1.49 3.18-1.18 3.18-1.18.62 1.58.23 2.75.11 3.04.73.81 1.18 1.83 1.18 3.09 0 4.42-2.69 5.4-5.26 5.68.41.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.21 0 .31.21.67.8.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+        </span><span>GitHub</span>
+      </a>
+      <a class="btn" href="#bibtex">
+        <span class="ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="14" height="14"><path fill="currentColor" d="M7 4h11v3h-9v3h8v3h-8v4h9v3H7V4zm-3 0h2v16H4V4z"/></svg>
+        </span><span>BibTeX</span>
+      </a>
+    </div>
+
+    <figure class="teaser">
+      <img src="assets/figs/teaser.png" alt="Comparison of prompt, context, and harness engineering.">
+      <figcaption>
+        A side-by-side comparison of prompt, context, and harness engineering.
+      </figcaption>
+    </figure>
+
+  </div>
+</section>
+
+<!-- =================================================================
+     Abstract
+     ================================================================= -->
+<section class="section section--alt" id="abstract">
+  <div class="container container--narrow">
+    <h2>Abstract</h2>
+    <p>
+      The rapid deployment of large language model (LLM) agents in production has revealed
+      a recurring pattern: task execution reliability depends less on the underlying model
+      than on the infrastructure layer that wraps it, the <em>agent execution harness</em>.
+      This survey provides a practice-grounded, systematic treatment of agent harness
+      engineering, organized around three claims. First, the agent harness is an
+      independent system layer whose engineering quality drives a large share of real-world
+      reliability, a position we develop through a three-phase engineering evolution from
+      prompt to context to harness engineering, a cross-layer synthesis covering the
+      cost&ndash;quality&ndash;speed trilemma, the capability&ndash;control tradeoff, and
+      the harness coupling problem, and an open-problem agenda grounded in both research
+      gaps and production pain points. Second, we propose <strong>ETCLOVG</strong>, a
+      seven-layer taxonomy (Execution environment, Tool interface, Context management,
+      Lifecycle / Orchestration, Observability, Verification, Governance) that extends
+      prior six-component frameworks by treating observability and governance as
+      independent architectural concerns. Third, we map a corpus of 148+ open-source
+      projects onto this taxonomy to expose ecosystem patterns, coverage gaps, and emerging
+      design principles, alongside engineering principles distilled from production
+      deployments at OpenAI, Anthropic, and LangChain that address the gap between
+      practitioner knowledge and research vocabulary.
+    </p>
+  </div>
+</section>
+
+<!-- =================================================================
+     Three engineering phases
+     ================================================================= -->
+<section class="section" id="phases">
+  <div class="container container--narrow">
+    <h2>Three Engineering Phases</h2>
+    <p>
+      Read across 2022&ndash;2026, agent engineering has gone through a coherent shift in
+      where the marginal effort lands. The three phases overlap in time and concept;
+      they describe what the field has chosen to engineer, not a clean sequence of
+      replacements.
+    </p>
+    <ul class="phases">
+      <li>
+        <span class="phases__year">2022&ndash;2024</span>
+        <strong>Prompt engineering.</strong>
+        The primary lever is the input prompt text &mdash; instructions, few-shot
+        examples, and reasoning templates &mdash; optimized for a single model call.
+      </li>
+      <li>
+        <span class="phases__year">2025</span>
+        <strong>Context engineering.</strong>
+        The question shifts from &ldquo;what is the input?&rdquo; to &ldquo;what should
+        the model see at each step?&rdquo; The scope expands to retrieval, compaction,
+        tool-result ranking, and managing context-window saturation across turns.
+      </li>
+      <li>
+        <span class="phases__year">2026&ndash;</span>
+        <strong>Harness engineering.</strong>
+        As models become capable enough to attempt long-running tasks, the engineering
+        focus expands to the full infrastructure wrapper &mdash; execution environment,
+        tool interface, context, lifecycle, observability, verification, and governance.
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- =================================================================
+     Timeline of Agent-Harness Systems
+     ================================================================= -->
+<section class="section section--alt" id="timeline">
+  <div class="container container--narrow">
+    <h2>Timeline of Agent-Harness Systems</h2>
+    <p>
+      The same shift is visible in the systems themselves. The ReAct era of
+      2022&ndash;2023 wrapped a single model loop with a while-loop, a prompt template,
+      and a small tool dispatch table; AutoGPT and BabyAGI exposed the resulting failures
+      &mdash; execution runaway, context blowout, state loss, unmonitored side effects
+      &mdash; as infrastructure problems rather than prompt problems. Tool integration
+      and multi-agent coordination from 2023&ndash;2024 added learned tool use (Gorilla,
+      ToolLLM, Toolformer), role-playing organizations (CAMEL, ChatDev, MetaGPT,
+      Mixture-of-Agents), the first agent benchmarks (SWE-bench, AgentBench, WebArena,
+      GAIA), and the beginnings of protocol standardization (MCP, A2A). By 2025&ndash;2026
+      enough deployment experience had accumulated that &ldquo;harness engineering&rdquo;
+      began to be named as a discipline of its own, accompanied by automated harness
+      optimization and a wave of results in which only the harness was varied.
+    </p>
+  </div>
+  <div class="container">
+    <figure class="figure--wide">
+      <img src="assets/figs/timeline.png" alt="Timeline of representative agent-harness systems, 2022 to 2026.">
+      <figcaption>
+        Representative agent-harness systems, 2022&ndash;2026. Each row corresponds to one
+        ETCLOVG layer, and the color of each entry reflects its primary layer.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- =================================================================
+     ETCLOVG Taxonomy
+     ================================================================= -->
+<section class="section" id="taxonomy">
+  <div class="container container--narrow">
+    <h2>The ETCLOVG Taxonomy</h2>
+    <p>
+      We organize the harness into seven layers. The first four describe the structural
+      core of a harness; the last three describe the control plane around it. Compared
+      with earlier six-component frameworks, <em>Observability</em> and <em>Governance</em>
+      appear here as independent layers because, in production deployments, each has its
+      own tooling stack and is owned by a different team.
+    </p>
+
+    <figure>
+      <img src="assets/figs/taxonomy.png" alt="ETCLOVG taxonomy of agent-harness engineering.">
+      <figcaption>
+        The ETCLOVG taxonomy. E, T, C, and L form the structural pillars; O provides
+        system-wide monitoring; V delivers evaluation and feedback; G enforces governance
+        constraints across the system.
+      </figcaption>
+    </figure>
+
+    <ul class="layers">
+      <li style="--lc:#7c5cff">
+        <span class="layers__id">E</span>
+        <div>
+          <strong>Execution environment.</strong>
+          Determines where agent code runs and what sandbox constraints bound it &mdash;
+          managed sandboxes, microVMs, code-specialized runtimes, computer-use
+          environments, browser sandboxes, and OS-level permission models.
+        </div>
+      </li>
+      <li style="--lc:#e07a3e">
+        <span class="layers__id">T</span>
+        <div>
+          <strong>Tool interface and protocol.</strong>
+          Specifies how external capabilities are described, discovered, and invoked,
+          including protocol standards (MCP, A2A), tool description and selection,
+          tool-augmented training, and session management.
+        </div>
+      </li>
+      <li style="--lc:#c79123">
+        <span class="layers__id">C</span>
+        <div>
+          <strong>Context and memory management.</strong>
+          Controls what the model can see across short-term, session-level, and persistent
+          horizons, including long-horizon context techniques and mitigations for context
+          drift.
+        </div>
+      </li>
+      <li style="--lc:#3aa05c">
+        <span class="layers__id">L</span>
+        <div>
+          <strong>Lifecycle and orchestration.</strong>
+          Organizes the control flow that reads and writes state, from the single-agent
+          inner loop to multi-agent patterns and full issue-to-pull-request task
+          pipelines.
+        </div>
+      </li>
+      <li style="--lc:#1f9e8a">
+        <span class="layers__id">O</span>
+        <div>
+          <strong>Observability and operations.</strong>
+          Captures traces, costs, failures, and reliability signals through tracing
+          platforms, agent-specific operations tools, cost tracking, and unified
+          observability.
+        </div>
+      </li>
+      <li style="--lc:#9b3b8c">
+        <span class="layers__id">V</span>
+        <div>
+          <strong>Verification and evaluation.</strong>
+          Turns tasks and traces into evaluation, failure attribution, and regression
+          feedback, including benchmark grounding, controlled execution, multi-level
+          judgement, and deployment-time evaluation loops.
+        </div>
+      </li>
+      <li style="--lc:#c54848">
+        <span class="layers__id">G</span>
+        <div>
+          <strong>Governance and security.</strong>
+          Constrains behavior across model-level, system-level, and organizational-level
+          sub-layers &mdash; permission models, lifecycle hooks, component hardening,
+          declarative constitutions, and audit infrastructure.
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="container">
+    <figure class="figure--tree">
+      <img src="assets/figs/taxonomy_tree.png" alt="Detailed taxonomy tree of agent-harness engineering, with subcategories under each of the seven ETCLOVG layers.">
+      <figcaption>
+        Detailed view of the taxonomy. Each branch corresponds to one ETCLOVG layer;
+        the leaves list the subcategories used to organize the survey, with pointers
+        to the sections that introduce them.
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- =================================================================
+     Project mapping
+     ================================================================= -->
+<section class="section section--alt" id="mapping">
+  <div class="container container--narrow">
+    <h2>Mapping Open-Source Projects</h2>
+    <p>
+      To make the taxonomy concrete, the survey codes 148+ open-source agent-harness
+      projects against ETCLOVG, using the public artifact itself &mdash; README files,
+      documentation, papers, examples, release notes &mdash; as the evidence. The corpus
+      is maintained as a living catalog at
+      <a href="https://github.com/Picrew/awesome-agent-harness">Awesome-Agent-Harness</a>,
+      and contributions are welcome through pull requests.
+    </p>
+
+    <figure>
+      <img src="assets/figs/construction_protocol.png" alt="Corpus construction protocol.">
+      <figcaption>
+        Corpus construction protocol. Candidates are gathered from GitHub, papers, curated
+        lists, package registries, and engineering blogs, then deduplicated, checked
+        against inclusion criteria, and coded against the seven ETCLOVG layers using
+        public documentation.
+      </figcaption>
+    </figure>
+
+    <p>
+      Coding is multi-label: a project's primary layer marks the mechanism most central
+      to it, while secondary layers are assigned only when the public documentation
+      exposes an independent capability. The counts below reflect primary assignments in
+      the current snapshot.
+    </p>
+
+    <table class="counts">
+      <thead>
+        <tr><th>Layer</th><th>Scope</th><th class="r">Primary&nbsp;projects</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="dot" style="--lc:#7c5cff"></span> E</td><td>Execution environment &amp; sandbox</td><td class="r">20</td></tr>
+        <tr><td><span class="dot" style="--lc:#e07a3e"></span> T</td><td>Tool interface &amp; protocol</td><td class="r">12</td></tr>
+        <tr><td><span class="dot" style="--lc:#c79123"></span> C</td><td>Context &amp; memory management</td><td class="r">9</td></tr>
+        <tr><td><span class="dot" style="--lc:#3aa05c"></span> L</td><td>Lifecycle &amp; orchestration</td><td class="r">47</td></tr>
+        <tr><td><span class="dot" style="--lc:#1f9e8a"></span> O</td><td>Observability &amp; operations</td><td class="r">15</td></tr>
+        <tr><td><span class="dot" style="--lc:#9b3b8c"></span> V</td><td>Verification &amp; evaluation</td><td class="r">21</td></tr>
+        <tr><td><span class="dot" style="--lc:#c54848"></span> G</td><td>Governance &amp; security</td><td class="r">14</td></tr>
+      </tbody>
+    </table>
+
+    <p>
+      Reading the corpus in aggregate, Execution, Tooling, Lifecycle, and Verification
+      have the densest visible coverage: coding, web, terminal, and computer-use agents
+      all require runnable environments, tool contracts, control loops, and repeatable
+      evaluation before they can be useful. Context and memory appear across many
+      projects but are often embedded inside larger frameworks rather than released as
+      standalone components. Observability and Governance are thinner in open source and
+      more often live inside commercial platforms, SDK features, or engineering writeups,
+      suggesting that operational control has matured later than runtime and benchmark
+      infrastructure.
+    </p>
+  </div>
+</section>
+
+<!-- =================================================================
+     Cross-layer synthesis
+     ================================================================= -->
+<section class="section" id="synthesis">
+  <div class="container container--narrow">
+    <h2>Cross-Layer Synthesis</h2>
+    <p>
+      Composing the seven layers creates system-level constraints that no single layer
+      can resolve alone. The survey distils these effects into three recurring patterns.
+    </p>
+    <ul class="bullets">
+      <li>
+        <strong>Cost&ndash;quality&ndash;speed trilemma.</strong>
+        Stronger sandboxes, richer context, and deeper evaluation improve quality but
+        cost tokens, latency, and infrastructure. Production harnesses cannot treat
+        quality as a scalar objective; they must decide which risks justify expensive
+        controls and which checks can run asynchronously or in regression suites.
+      </li>
+      <li>
+        <strong>Capability&ndash;control tradeoff.</strong>
+        Larger tool menus, persistent memory, and permissive sandboxes broaden task
+        coverage but enlarge the blast radius of misaligned or compromised actions.
+        Capability and control are therefore a single design axis spanning tool schemas,
+        context policy, runtime permissions, identity, auditability, and human approval.
+      </li>
+      <li>
+        <strong>Harness coupling problem.</strong>
+        Harness layers are coupled in ways that make local optimization fragile. A prompt,
+        tool, sandbox, verifier, or monitor may look beneficial in isolation while
+        degrading the whole rollout when combined with the rest of the control loop.
+        Harness changes should be tested as system changes.
+      </li>
+    </ul>
+    <p>
+      A related shift runs through the corpus: from <em>agent frameworks</em>, which
+      package local abstractions (agents, tools, memory, execution loops), to
+      <em>agent platforms</em>, which add durable workspaces, identity, observability,
+      evaluation, governance, and human handoff across many runs and many users.
+    </p>
+  </div>
+</section>
+
+<!-- =================================================================
+     Open problems
+     ================================================================= -->
+<section class="section section--alt" id="open">
+  <div class="container container--narrow">
+    <h2>Open Problems</h2>
+    <p>
+      Five questions remain open across the taxonomy. Each follows from the cross-layer
+      synthesis rather than from a single ETCLOVG layer in isolation.
+    </p>
+    <ol class="problems">
+      <li>
+        <strong>Hardening and scaling execution environments.</strong>
+        Common security evaluations for prompt injection, goal misalignment, and
+        compositional amplification; cost models that decide between containers,
+        microVMs, OS permission boundaries, full desktop VMs, browser environments, and
+        learned surrogates; portability that preserves semantics across self-hosted,
+        cloud, and hybrid deployments.
+      </li>
+      <li>
+        <strong>Reliable state in long-running agents.</strong>
+        Recasting context management as state estimation: characterizing the information
+        loss at each compression, retrieval, or forgetting step; adding provenance,
+        contradiction handling, and explicit staleness markers; recovering from durable
+        artifacts rather than from compressed history.
+      </li>
+      <li>
+        <strong>Trace-native failure diagnosis.</strong>
+        Traces should be the primary object from which systems compute outcome scores,
+        trajectory quality, failure attribution, and regression tests &mdash; not just
+        after-the-fact debugging material. The gap between widespread observability
+        adoption and far less common offline evaluation is the concrete starting point.
+      </li>
+      <li>
+        <strong>Standard handoffs across agents, tools, and humans.</strong>
+        Handoffs should transfer not only a text summary but intent, constraints,
+        permissions, artifacts, provenance, budget state, risk level, trace history, and
+        unresolved decisions. The open question is how to make such a protocol rich
+        enough for safety and recovery while remaining simple enough for broad adoption.
+      </li>
+      <li>
+        <strong>Adaptive simplification as models improve.</strong>
+        Every wrapper encodes an assumption about what the model cannot do reliably on
+        its own. As models improve, some interventions remain load-bearing while others
+        become cost, latency, or operational overhead. Future harnesses need mechanisms
+        for ablating, optimizing, and simplifying themselves under joint quality,
+        latency, cost, and risk constraints.
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- =================================================================
+     BibTeX
+     ================================================================= -->
+<section class="section" id="bibtex">
+  <div class="container container--narrow">
+    <h2>Citation</h2>
+    <p>
+      If you find this survey useful in your research, please consider citing:
+    </p>
+    <div class="bibtex">
+      <button class="bibtex__copy" type="button" id="copy-bibtex" aria-label="Copy BibTeX">Copy</button>
+<pre><code id="bibtex-code">@misc{li2026agentharness,
+  title  = {A Survey of Harness Engineering},
+  author = {Junjie Li and Xi Xiao and Yunbei Zhang and Chen Liu and
+            Lin Zhao and Xiaoying Liao and Yingrui Ji and Janet Wang and
+            Jianyang Gu and Yingqiang Ge and Weijie Xu and Xi Fang and
+            Xiang Xu and Tianchen Zhao and Youngeun Kim and
+            Tianyang Wang and Jihun Hamm and Smita Krishnaswamy and
+            Jun Huan and Chandan K. Reddy},
+  year   = {2026},
+  note   = {Preprint}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     Footer
+     ================================================================= -->
+<footer class="footer">
+  <div class="container container--narrow">
+    <p>
+      Companion page to the survey. The catalog lives at
+      <a href="https://github.com/Picrew/awesome-agent-harness">Awesome-Agent-Harness</a>;
+      contributions are welcome. Layout follows common academic project-page conventions
+      (see <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> for the
+      original template). Page content released under
+      <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+    </p>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var btn = document.getElementById('copy-bibtex');
+    var src = document.getElementById('bibtex-code');
+    if (!btn || !src) return;
+    btn.addEventListener('click', function () {
+      var text = src.innerText.trim();
+      var done = function () {
+        var prev = btn.textContent;
+        btn.textContent = 'Copied';
+        btn.classList.add('is-copied');
+        setTimeout(function () {
+          btn.textContent = prev;
+          btn.classList.remove('is-copied');
+        }, 1400);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { fallback(); });
+      } else {
+        fallback();
+      }
+      function fallback() {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly', '');
+        ta.style.position = 'absolute'; ta.style.left = '-9999px';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); done(); } catch (e) {}
+        document.body.removeChild(ta);
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>
