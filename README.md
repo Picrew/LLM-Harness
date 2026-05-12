@@ -1,6 +1,6 @@
-# A Survey of Harness Engineering
+# Agent Harness Engineering: A Survey
 
-Companion page to *A Survey of Harness Engineering*. The site introduces the ETCLOVG
+Companion page to *Agent Harness Engineering: A Survey*. The site introduces the ETCLOVG
 seven-layer taxonomy and points to the public catalog of agent-harness projects
 maintained at [Awesome-Agent-Harness](https://github.com/Picrew/awesome-agent-harness).
 
@@ -23,7 +23,7 @@ maintained at [Awesome-Agent-Harness](https://github.com/Picrew/awesome-agent-ha
 └── .gitignore
 ```
 
-The site is deliberately dependency-free — plain HTML and CSS with a small piece of
+The site is deliberately dependency-free: plain HTML and CSS with a small piece of
 inline JavaScript for the copy-BibTeX button. Any static server can preview it.
 
 ## Run locally
@@ -53,7 +53,7 @@ rather than templated, but it is in the same spirit as the
 
 ```bibtex
 @misc{li2026agentharness,
-  title  = {A Survey of Harness Engineering},
+  title  = {Agent Harness Engineering: A Survey},
   author = {Junjie Li and Xi Xiao and Yunbei Zhang and Chen Liu and
             Lin Zhao and Xiaoying Liao and Yingrui Ji and Janet Wang and
             Jianyang Gu and Yingqiang Ge and Weijie Xu and Xi Fang and

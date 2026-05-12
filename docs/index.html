@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A Survey of Harness Engineering. Project page for a survey of the agent execution harness, introducing the ETCLOVG seven-layer taxonomy and a public catalog of open-source agent-harness projects.">
+<meta name="description" content="Agent Harness Engineering: A Survey. Project page for a survey of the agent execution harness, introducing the ETCLOVG seven-layer taxonomy and a public catalog of open-source agent-harness projects.">
 <meta name="keywords" content="LLM agents, agent harness, agent infrastructure, ETCLOVG, agent survey, prompt engineering, context engineering, agent observability, agent governance">
-<title>A Survey of Harness Engineering</title>
+<title>Agent Harness Engineering: A Survey</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Serif:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -19,18 +19,18 @@
   <div class="container">
 
     <h1 class="title">
-      A Survey of Harness Engineering
+      Agent Harness Engineering: A Survey
     </h1>
 
     <div class="authors">
-      <a href="#">Junjie&nbsp;Li</a><sup>1,6,&ast;</sup>,
-      <a href="#">Xi&nbsp;Xiao</a><sup>6,&ast;</sup>,
-      <a href="#">Yunbei&nbsp;Zhang</a><sup>5,&ast;</sup>,
-      <a href="#">Chen&nbsp;Liu</a><sup>2,&ast;</sup>,
-      <a href="#">Lin&nbsp;Zhao</a><sup>4</sup>,
+      <a href="https://picrew.github.io/" target="_blank" rel="noopener">Junjie&nbsp;Li</a><sup>1,6,&ast;</sup>,
+      <a href="https://xixiaouab.github.io/" target="_blank" rel="noopener">Xi&nbsp;Xiao</a><sup>6,&ast;</sup>,
+      <a href="https://yunbeizhang.github.io/" target="_blank" rel="noopener">Yunbei&nbsp;Zhang</a><sup>5,&ast;</sup>,
+      <a href="https://chenliu-1996.github.io/" target="_blank" rel="noopener">Chen&nbsp;Liu</a><sup>2,&ast;</sup>,
+      <a href="https://lin-zhao-resolve.github.io" target="_blank" rel="noopener">Lin&nbsp;Zhao</a><sup>4</sup>,
       <a href="#">Xiaoying&nbsp;Liao</a><sup>3</sup>,
-      <a href="#">Yingrui&nbsp;Ji</a><sup>5</sup>,
-      <a href="#">Janet&nbsp;Wang</a><sup>6</sup>,
+      <a href="https://yingruiji.github.io/" target="_blank" rel="noopener">Yingrui&nbsp;Ji</a><sup>5</sup>,
+      <a href="https://janetwang.github.io/" target="_blank" rel="noopener">Janet&nbsp;Wang</a><sup>6</sup>,
       <a href="#">Jianyang&nbsp;Gu</a><sup>7</sup>,
       <a href="#">Yingqiang&nbsp;Ge</a><sup>9</sup>,
       <a href="#">Weijie&nbsp;Xu</a><sup>9</sup>,
@@ -101,29 +101,68 @@
      Abstract
      ================================================================= -->
 <section class="section section--alt" id="abstract">
+  <div class="container">
+    <div class="abstract-grid">
+      <div class="abstract-headline">
+        <p class="eyebrow">Abstract</p>
+        <h2 class="headline">The harness is becoming the binding constraint.</h2>
+      </div>
+      <div class="abstract-prose">
+        <p>
+          The rapid deployment of large language model agents in production has revealed
+          a recurring pattern: task execution reliability depends less on the underlying
+          model than on the infrastructure layer that wraps it, the
+          <em>agent execution harness</em>.
+        </p>
+        <p>
+          This survey presents agent harness engineering as an independent system layer,
+          proposes the seven-layer <strong>ETCLOVG</strong> taxonomy (Execution, Tooling,
+          Context, Lifecycle, Observability, Verification, Governance), and maps 148+
+          open-source projects onto that taxonomy to expose ecosystem patterns, coverage
+          gaps, and emerging design principles.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================================================================
+     Three Claims
+     ================================================================= -->
+<section class="section section--alt" id="claims">
   <div class="container container--narrow">
-    <h2>Abstract</h2>
-    <p>
-      The rapid deployment of large language model (LLM) agents in production has revealed
-      a recurring pattern: task execution reliability depends less on the underlying model
-      than on the infrastructure layer that wraps it, the <em>agent execution harness</em>.
-      This survey provides a practice-grounded, systematic treatment of agent harness
-      engineering, organized around three claims. First, the agent harness is an
-      independent system layer whose engineering quality drives a large share of real-world
-      reliability, a position we develop through a three-phase engineering evolution from
-      prompt to context to harness engineering, a cross-layer synthesis covering the
-      cost&ndash;quality&ndash;speed trilemma, the capability&ndash;control tradeoff, and
-      the harness coupling problem, and an open-problem agenda grounded in both research
-      gaps and production pain points. Second, we propose <strong>ETCLOVG</strong>, a
-      seven-layer taxonomy (Execution environment, Tool interface, Context management,
-      Lifecycle / Orchestration, Observability, Verification, Governance) that extends
-      prior six-component frameworks by treating observability and governance as
-      independent architectural concerns. Third, we map a corpus of 148+ open-source
-      projects onto this taxonomy to expose ecosystem patterns, coverage gaps, and emerging
-      design principles, alongside engineering principles distilled from production
-      deployments at OpenAI, Anthropic, and LangChain that address the gap between
-      practitioner knowledge and research vocabulary.
-    </p>
+    <div class="section-heading">
+      <p class="eyebrow">Contributions</p>
+      <h2 class="headline">Three Claims</h2>
+    </div>
+    <div class="claims">
+      <article class="claim">
+        <span class="claim__label">Claim 1</span>
+        <h3>Harnesses are independent system layers.</h3>
+        <p>
+          Real-world reliability is shaped by execution controls, feedback loops,
+          governance, evaluation, and operational design, not only by model capability.
+        </p>
+      </article>
+      <article class="claim">
+        <span class="claim__label">Claim 2</span>
+        <h3>ETCLOVG separates production concerns.</h3>
+        <p>
+          Execution, Tooling, Context, Lifecycle, Observability, Verification, and
+          Governance expose architectural boundaries that earlier frameworks often
+          conflate.
+        </p>
+      </article>
+      <article class="claim">
+        <span class="claim__label">Claim 3</span>
+        <h3>A broad ecosystem map reveals gaps.</h3>
+        <p>
+          Mapping 148+ projects surfaces adoption patterns across sandboxes, protocols,
+          memory systems, orchestrators, observability platforms, benchmarks, and
+          governance stacks.
+        </p>
+      </article>
+    </div>
   </div>
 </section>
 
@@ -143,8 +182,8 @@
       <li>
         <span class="phases__year">2022&ndash;2024</span>
         <strong>Prompt engineering.</strong>
-        The primary lever is the input prompt text &mdash; instructions, few-shot
-        examples, and reasoning templates &mdash; optimized for a single model call.
+        The primary lever is the input prompt text: instructions, few-shot examples,
+        and reasoning templates, all optimized for a single model call.
       </li>
       <li>
         <span class="phases__year">2025</span>
@@ -157,8 +196,8 @@
         <span class="phases__year">2026&ndash;</span>
         <strong>Harness engineering.</strong>
         As models become capable enough to attempt long-running tasks, the engineering
-        focus expands to the full infrastructure wrapper &mdash; execution environment,
-        tool interface, context, lifecycle, observability, verification, and governance.
+        focus expands to the full infrastructure wrapper: execution environment, tool
+        interface, context, lifecycle, observability, verification, and governance.
       </li>
     </ul>
   </div>
@@ -173,9 +212,9 @@
     <p>
       The same shift is visible in the systems themselves. The ReAct era of
       2022&ndash;2023 wrapped a single model loop with a while-loop, a prompt template,
-      and a small tool dispatch table; AutoGPT and BabyAGI exposed the resulting failures
-      &mdash; execution runaway, context blowout, state loss, unmonitored side effects
-      &mdash; as infrastructure problems rather than prompt problems. Tool integration
+      and a small tool dispatch table; AutoGPT and BabyAGI exposed the resulting failures,
+      including execution runaway, context blowout, state loss, and unmonitored side
+      effects, as infrastructure problems rather than prompt problems. Tool integration
       and multi-agent coordination from 2023&ndash;2024 added learned tool use (Gorilla,
       ToolLLM, Toolformer), role-playing organizations (CAMEL, ChatDev, MetaGPT,
       Mixture-of-Agents), the first agent benchmarks (SWE-bench, AgentBench, WebArena,
@@ -223,7 +262,7 @@
         <span class="layers__id">E</span>
         <div>
           <strong>Execution environment.</strong>
-          Determines where agent code runs and what sandbox constraints bound it &mdash;
+          Determines where agent code runs and what sandbox constraints bound it:
           managed sandboxes, microVMs, code-specialized runtimes, computer-use
           environments, browser sandboxes, and OS-level permission models.
         </div>
@@ -278,7 +317,7 @@
         <div>
           <strong>Governance and security.</strong>
           Constrains behavior across model-level, system-level, and organizational-level
-          sub-layers &mdash; permission models, lifecycle hooks, component hardening,
+          sub-layers: permission models, lifecycle hooks, component hardening,
           declarative constitutions, and audit infrastructure.
         </div>
       </li>
@@ -305,9 +344,9 @@
     <h2>Mapping Open-Source Projects</h2>
     <p>
       To make the taxonomy concrete, the survey codes 148+ open-source agent-harness
-      projects against ETCLOVG, using the public artifact itself &mdash; README files,
-      documentation, papers, examples, release notes &mdash; as the evidence. The corpus
-      is maintained as a living catalog at
+      projects against ETCLOVG, using the public artifact itself (README files,
+      documentation, papers, examples, release notes) as the evidence. The corpus is
+      maintained as a living catalog at
       <a href="https://github.com/Picrew/awesome-agent-harness">Awesome-Agent-Harness</a>,
       and contributions are welcome through pull requests.
     </p>
@@ -429,7 +468,7 @@
       <li>
         <strong>Trace-native failure diagnosis.</strong>
         Traces should be the primary object from which systems compute outcome scores,
-        trajectory quality, failure attribution, and regression tests &mdash; not just
+        trajectory quality, failure attribution, and regression tests, not just
         after-the-fact debugging material. The gap between widespread observability
         adoption and far less common offline evaluation is the concrete starting point.
       </li>
@@ -464,7 +503,7 @@
     <div class="bibtex">
       <button class="bibtex__copy" type="button" id="copy-bibtex" aria-label="Copy BibTeX">Copy</button>
 <pre><code id="bibtex-code">@misc{li2026agentharness,
-  title  = {A Survey of Harness Engineering},
+  title  = {Agent Harness Engineering: A Survey},
   author = {Junjie Li and Xi Xiao and Yunbei Zhang and Chen Liu and
             Lin Zhao and Xiaoying Liao and Yingrui Ji and Janet Wang and
             Jianyang Gu and Yingqiang Ge and Weijie Xu and Xi Fang and
