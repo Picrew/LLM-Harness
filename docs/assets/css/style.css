@@ -365,19 +365,28 @@ figure figcaption {
   font-size: 15.5px;
   color: var(--ink-soft);
   line-height: 1.7;
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 18px;
+  align-items: baseline;
 }
 .phases strong { color: var(--ink); }
 .phases__year {
-  display: inline-block;
   font-family: 'JetBrains Mono', ui-monospace, monospace;
   font-size: 12px;
   color: var(--muted);
   letter-spacing: 0.04em;
-  margin-right: 12px;
   padding: 2px 8px;
   border-radius: 3px;
   background: var(--bg-alt);
-  vertical-align: 0.08em;
+  justify-self: start;
+}
+.phases__body { color: var(--ink-soft); }
+@media (max-width: 520px) {
+  .phases li {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
 }
 
 /* Section--alt overrides. Keep sub-cards readable on alt background. */
