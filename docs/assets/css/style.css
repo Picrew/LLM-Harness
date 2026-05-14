@@ -219,6 +219,9 @@ figure figcaption {
   letter-spacing: -0.012em;
   color: var(--ink);
   margin: 0;
+  /* Let the browser balance line widths so the headline doesn't
+     leave a single short word on the last line. */
+  text-wrap: balance;
 }
 
 .section-heading {
@@ -237,7 +240,7 @@ figure figcaption {
 @media (max-width: 880px) {
   .abstract-grid { grid-template-columns: 1fr; gap: 26px; }
 }
-.abstract-headline .headline { max-width: 14ch; }
+.abstract-headline .headline { max-width: 18ch; }
 .abstract-prose p {
   font-size: 16px;
   color: var(--ink-soft);
