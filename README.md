@@ -54,15 +54,15 @@ rather than templated, but it is in the same spirit as the
 
 ```bibtex
 @misc{li2026agentharness,
-  title  = {Agent Harness Engineering: A Survey},
-  author = {Junjie Li and Xi Xiao and Yunbei Zhang and Chen Liu and
-            Lin Zhao and Xiaoying Liao and Yingrui Ji and Janet Wang and
-            Jianyang Gu and Yingqiang Ge and Weijie Xu and Xi Fang and
-            Xiang Xu and Tianchen Zhao and Youngeun Kim and
-            Tianyang Wang and Jihun Hamm and Smita Krishnaswamy and
-            Jun Huan and Chandan K. Reddy},
-  year   = {2026},
-  note   = {Preprint}
+  title={Agent Harness Engineering: A Survey},
+  author={Li, Junjie and Xiao, Xi and Zhang, Yunbei and Liu, Chen and
+          Zhao, Lin and Liao, Xiaoying and Ji, Yingrui and Wang, Janet and
+          Gu, Jianyang and Ge, Yingqiang and Xu, Weijie and Fang, Xi and
+          Xu, Xiang and Zhao, Tianchen and Kim, Youngeun and
+          Wang, Tianyang and Hamm, Jihun and Krishnaswamy, Smita and
+          Huan, Jun and Reddy, Chandan},
+  url={https://openreview.net/pdf?id=eONq7FdiHa},
+  year={2026}
 }
 ```
 
