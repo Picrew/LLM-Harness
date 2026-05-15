@@ -5,8 +5,9 @@ seven-layer taxonomy and points to the public catalog of agent-harness projects
 maintained at [Awesome-Agent-Harness](https://github.com/Picrew/awesome-agent-harness).
 
 - **Live page:** <https://picrew.github.io/LLM-Harness/>
-- **Paper:** *arXiv link forthcoming*
+- **Paper (OpenReview):** <https://openreview.net/forum?id=eONq7FdiHa>
 - **Catalog:** <https://github.com/Picrew/awesome-agent-harness>
+- **Dataset (HuggingFace):** <https://huggingface.co/datasets/ChenLiu1996/Agent-Harness-Engineering>
 
 ## What is in this repository
 
