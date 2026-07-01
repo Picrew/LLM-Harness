@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-
-Sitemap: https://picrew.github.io/LLM-Harness/sitemap.xml
+Disallow: /
