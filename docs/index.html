@@ -260,42 +260,43 @@
 </section>
 
 <!-- =================================================================
-     Three engineering phases
+     Prompt, context, and harness engineering
      ================================================================= -->
-<section class="section" id="phases">
+<section class="section" id="scopes">
   <div class="container container--narrow">
-    <h2>Three Engineering Phases</h2>
+    <h2>Prompt, Context, and Harness Engineering</h2>
     <p>
-      Read across 2022&ndash;2026, agent engineering has gone through a coherent shift in
-      where the marginal effort lands. The three phases overlap in time and concept;
-      they describe what the field has chosen to engineer, not a clean sequence of
-      replacements.
+      The survey treats these as expanding scopes of system design rather than a sequence
+      of historical stages. Prompt engineering shapes a model invocation; context
+      engineering manages the information available during multi-step execution; and
+      harness engineering coordinates the closed-loop system around both. The broader
+      scope includes the narrower ones instead of replacing them.
     </p>
-    <ul class="phases">
+    <ul class="scopes">
       <li>
-        <span class="phases__year">2022&ndash;2024</span>
-        <div class="phases__body">
+        <span class="scopes__level">Model invocation</span>
+        <div class="scopes__body">
           <strong>Prompt engineering.</strong>
-          The primary lever is the input prompt text: instructions, few-shot examples,
-          and reasoning templates, all optimized for a single model call.
+          Designs system and user instructions, examples, output formats, and reasoning
+          templates to guide one or more model calls.
         </div>
       </li>
       <li>
-        <span class="phases__year">2025</span>
-        <div class="phases__body">
+        <span class="scopes__level">Information state</span>
+        <div class="scopes__body">
           <strong>Context engineering.</strong>
-          The question shifts from &ldquo;what is the input?&rdquo; to &ldquo;what should
-          the model see at each step?&rdquo; The scope expands to retrieval, compaction,
-          tool-result ranking, and managing context-window saturation across turns.
+          Selects, orders, filters, and summarizes retrieved documents, memories, and
+          prior interactions so the model receives the right information at each step.
         </div>
       </li>
       <li>
-        <span class="phases__year">2026&ndash;</span>
-        <div class="phases__body">
+        <span class="scopes__level">Execution system</span>
+        <div class="scopes__body">
           <strong>Harness engineering.</strong>
-          As models become capable enough to attempt long-running tasks, the engineering
-          focus expands to the full infrastructure wrapper: execution environment, tool
-          interface, context, lifecycle, observability, verification, and governance.
+          Integrates prompts and context with execution environments, tool interfaces,
+          persistent state, lifecycle control, observability, verification, and
+          governance. It controls how outputs become actions and how results feed back
+          into subsequent steps.
         </div>
       </li>
     </ul>
@@ -309,7 +310,7 @@
   <div class="container container--narrow">
     <h2>Timeline of Agent-Harness Systems</h2>
     <p>
-      The same shift is visible in the systems themselves. The ReAct era of
+      This widening engineering scope is also visible in the systems themselves. The ReAct era of
       2022&ndash;2023 wrapped a single model loop with a while-loop, a prompt template,
       and a small tool dispatch table; AutoGPT and BabyAGI exposed the resulting failures,
       including execution runaway, context blowout, state loss, and unmonitored side
