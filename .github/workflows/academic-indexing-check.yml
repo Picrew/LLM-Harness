@@ -1,0 +1,39 @@
+name: Academic indexing checks
+
+on:
+  push:
+    paths:
+      - "docs/**"
+      - ".github/workflows/academic-indexing-check.yml"
+  pull_request:
+    paths:
+      - "docs/**"
+      - ".github/workflows/academic-indexing-check.yml"
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify the Scholar landing page and PDF
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test -s docs/main.pdf
+
+          if grep -Eiq '<meta[^>]+name=["'\'']robots["'\''][^>]+content=["'\''][^"'\'']*noindex' docs/index.html; then
+            echo "docs/index.html must remain indexable; a noindex directive can remove the paper from search results."
+            exit 1
+          fi
+
+          for tag in citation_title citation_author citation_publication_date citation_pdf_url; do
+            if ! grep -Fq "name=\"$tag\"" docs/index.html; then
+              echo "Missing required Google Scholar metadata: $tag"
+              exit 1
+            fi
+          done
+
+          grep -Fq 'https://picrew.github.io/LLM-Harness/main.pdf' docs/index.html
+          grep -Fq 'https://picrew.github.io/LLM-Harness/main.pdf' docs/sitemap.xml
